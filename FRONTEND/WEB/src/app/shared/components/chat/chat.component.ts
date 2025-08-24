@@ -29,7 +29,6 @@ export class ChatComponent implements AfterViewChecked {
     this.messages.push({ text, type: 'sent' });
     this.inputMessage = '';
 
-    // Simulate a received reply after 1 second
     setTimeout(() => {
       this.messages.push({ text: 'Received: ' + text, type: 'received' });
     }, 1000);
