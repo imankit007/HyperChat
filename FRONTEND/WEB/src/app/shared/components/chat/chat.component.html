@@ -1,0 +1,21 @@
+<div class="d-flex flex-column bg-white rounded shadow-sm" style="width: 350px; height: 500px;">
+  <div class="flex-grow-1 overflow-auto p-3 border-bottom" #messagesContainer>
+    <div *ngFor="let msg of messages" class="mb-3" [ngClass]="msg.type === 'sent' ? 'text-end' : 'text-start'">
+      <div [ngClass]="msg.type === 'sent' ? 'alert alert-primary mb-0 d-inline-block' : 'alert alert-secondary mb-0 d-inline-block'">
+        {{ msg.text }}
+      </div>
+    </div>
+  </div>
+
+  <div class="input-group p-3 bg-light">
+    <input
+      type="text"
+      class="form-control rounded-pill"
+      placeholder="Type your message..."
+      [(ngModel)]="inputMessage"
+      (keydown.enter)="sendMessage()"
+      aria-label="Message input"
+    />
+    <button class="btn btn-primary rounded-pill ms-2" (click)="sendMessage()">Send</button>
+  </div>
+</div>
