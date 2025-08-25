@@ -29,9 +29,9 @@ defmodule WsServer.Room do
     {:noreply, MapSet.delete(set, pid)}
   end
 
-  def handle_cast({:broadcast, _from, event, payload}, set) do
+  def handle_cast({:broadcast, from, event, payload}, set) do
     msg = {:broadcast, event, payload}
-    Enum.each(set, fn pid -> Kernel.send(pid, msg) end)
+    Enum.each(set, fn pid ->  if pid != from do  Kernel.send(pid, msg) end end)
     {:noreply, set}
   end
 

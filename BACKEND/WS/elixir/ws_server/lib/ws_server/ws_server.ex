@@ -21,8 +21,6 @@ defmodule WsServer.SocketHandler do
     WsServer.Room.broadcast(self(), :chat, %{"from" => state.nickname, "text" => String.trim(msg)})
 
     {:ok, state}
-
-    {:reply, {:text, "Echo: #{msg}"}, state}
   end
 
   def websocket_handle(_data, state), do: {:ok, state}
